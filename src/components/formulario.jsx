@@ -17,6 +17,7 @@ function Formulario() {
   }
 
   function EnviarCita(e){
+    console.log(e)
     e.preventDefault();
    setNuevaCita = ({
         mascota: "",
@@ -25,10 +26,10 @@ function Formulario() {
         hora: "",
         sintomas: ""})
   }
-🐛
+
   return (
     <>
-      <form onSubmit={EnviarCita}>
+      <form>
         <label>Nombre Mascota</label>
         <input
           type="text"
@@ -42,7 +43,7 @@ function Formulario() {
         <input
           type="text"
           name="duenio"
-          🐛        value={nuevaCita.duenio}
+                 value={nuevaCita.duenio}
           onChange={AgregarCita}
           placeholder="Nombre del dueño"
         ></input>
@@ -70,8 +71,8 @@ function Formulario() {
           value={nuevaCita.sintomas}
           onChange={AgregarCita}
         ></input>
-🐛
-        <button type="submit" className="botonAgregar">
+
+        <button type="submit" onSubmit={EnviarCita} className="botonAgregar">
           Agregar cita
         </button>
       </form>
