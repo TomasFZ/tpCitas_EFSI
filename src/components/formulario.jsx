@@ -1,9 +1,7 @@
-//import { useEffect, useState } from "react";
-// formulario.jsx
 import React, { useState } from "react";
 
-function Formulario() {
-  var [nuevaCita, setNuevaCita] = useState({
+function Formulario({ citas, setCitas }) {
+  const [nuevaCita, setNuevaCita] = useState({
     mascota: "",
     duenio: "",
     fecha: "",
@@ -11,72 +9,71 @@ function Formulario() {
     sintomas: ""
   });
 
-  function AgregarCita(e){
+  function AgregarCita(e) {
     setNuevaCita({ ...nuevaCita, [e.target.name]: e.target.value });
-    console.log(e);
   }
 
-  function EnviarCita(e){
-    console.log(e)
+  function EnviarCita(e) {
     e.preventDefault();
-   setNuevaCita = ({
-        mascota: "",
-        duenio: "",
-        fecha: "",
-        hora: "",
-        sintomas: ""})
+    console.log(nuevaCita); // Imprime los valores del formulario en la consola
+    setCitas([...citas, nuevaCita]);
+    setNuevaCita({
+      mascota: "",
+      duenio: "",
+      fecha: "",
+      hora: "",
+      sintomas: ""
+    });
   }
 
   return (
-    <>
-      <form>
-        <label>Nombre Mascota</label>
-        <input
-          type="text"
-          name="mascota"
-          value={nuevaCita.mascota}
-          onChange={AgregarCita}
-          placeholder="Nombre de la mascota"
-        ></input>
+    <form onSubmit={EnviarCita}>
+      <label>Nombre Mascota</label>
+      <input
+        type="text"
+        name="mascota"
+        value={nuevaCita.mascota}
+        onChange={AgregarCita}
+        placeholder="Nombre de la mascota"
+      />
 
-        <label>Nombre Dueño</label>
-        <input
-          type="text"
-          name="duenio"
-                 value={nuevaCita.duenio}
-          onChange={AgregarCita}
-          placeholder="Nombre del dueño"
-        ></input>
+      <label>Nombre Dueño</label>
+      <input
+        type="text"
+        name="duenio"
+        value={nuevaCita.duenio}
+        onChange={AgregarCita}
+        placeholder="Nombre del dueño"
+      />
 
-        <label>Fecha</label>
-        <input
-          type="date"
-          name="fecha"
-          value={nuevaCita.fecha}
-          onChange={AgregarCita}
-        ></input>
+      <label>Fecha</label>
+      <input
+        type="date"
+        name="fecha"
+        value={nuevaCita.fecha}
+        onChange={AgregarCita}
+      />
 
-        <label>Hora</label>
-        <input
-          type="time"
-          name="hora"
-          value={nuevaCita.hora}
-          onChange={AgregarCita}
-        ></input>
+      <label>Hora</label>
+      <input
+        type="time"
+        name="hora"
+        value={nuevaCita.hora}
+        onChange={AgregarCita}
+      />
 
-        <label>Síntomas</label>
-        <input
-          type="text"
-          name="sintomas"
-          value={nuevaCita.sintomas}
-          onChange={AgregarCita}
-        ></input>
+      <label>Síntomas</label>
+      <input
+        type="text"
+        name="sintomas"
+        value={nuevaCita.sintomas}
+        onChange={AgregarCita}
+      />
 
-        <button type="submit" onSubmit={EnviarCita} className="botonAgregar">
-          Agregar cita
-        </button>
-      </form>
-    </>
+      <button type="submit" className="botonAgregar">
+        Agregar cita
+      </button>
+    </form>
   );
 }
 

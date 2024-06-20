@@ -1,11 +1,17 @@
 //import { useEffect, useState } from "react";
 //import {citas, setCitas} from "App.jsx";
-function Listado(citas, setCitas){
+function Listado({citas, setCitas}){ //citas para recorrer, setCitas para borrarlas. 
     return (
         <>
-            {/* <form>
-                
-            </form> */}
+                {citas.map((cita, i) => (
+                    <div className="cita" key={i}>
+                    <p>Mascota: <span>{cita.mascota}</span></p>
+                    <p>Dueño: <span>{cita.duenio}</span></p>
+                    <p>Fecha: <span>{cita.fecha}</span></p>
+                    <p>Hora: <span>{cita.hora}</span></p>
+                    <p>Sintomas: <span>{cita.sintomas}</span></p>
+                    </div>
+                ))}
         </>
         );
       }
